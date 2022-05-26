@@ -1,0 +1,23 @@
+n	pais	valor	población
+2	Honduras	82	Proporción de la fuerza de trabajo excluida de facto
+1	Honduras	51	Proporción de la fuerza de trabajo que es pobre
+4	Perú	77	Proporción de la fuerza de trabajo excluida de facto
+3	Perú	30	Proporción de la fuerza de trabajo que es pobre
+6	Ecuador	72	Proporción de la fuerza de trabajo excluida de facto
+5	Ecuador	25	Proporción de la fuerza de trabajo que es pobre
+8	Colombia 	63	Proporción de la fuerza de trabajo excluida de facto
+7	Colombia 	22	Proporción de la fuerza de trabajo que es pobre
+10	Jamaica	60	Proporción de la fuerza de trabajo excluida de facto
+9	Jamaica	0	Proporción de la fuerza de trabajo que es pobre
+12	Rep. Dominicana	59	Proporción de la fuerza de trabajo excluida de facto
+11	Rep. Dominicana	9	Proporción de la fuerza de trabajo que es pobre
+14	México	57	Proporción de la fuerza de trabajo excluida de facto
+13	México	26	Proporción de la fuerza de trabajo que es pobre
+16	Argentina	46	Proporción de la fuerza de trabajo excluida de facto
+15	Argentina	4	Proporción de la fuerza de trabajo que es pobre
+18	Brasil	43	Proporción de la fuerza de trabajo excluida de facto
+17	Brasil	15	Proporción de la fuerza de trabajo que es pobre
+20	Chile	35	Proporción de la fuerza de trabajo excluida de facto
+19	Chile	5	Proporción de la fuerza de trabajo que es pobre
+
+

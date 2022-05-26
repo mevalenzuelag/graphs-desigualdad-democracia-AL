@@ -1,0 +1,19 @@
+País	y1996	y2010	y2020	Diferencia
+Uruguay	80	75	74	-1
+Costa Rica	80	72	67	-5
+Panamá	75	61	35	-26
+Argentina	71	66	55	-11
+Bolivia	64	68	54	-14
+Perú	63	61	46	-15
+Venezuela	62	84	69	-15
+Colombia	60	60	43	-17
+Paraguay	59	49	44	-5
+Nicaragua	59	58	48	-10
+El Salvador	56	59	46	-13
+Rep Dom. (2004)	65	63	50	-13
+Chile	54	63	60	-3
+México	53	49	43	-6
+Ecuador 	52	64	33	-31
+Brasil	50	54	40	-14
+Guatemala	50	46	37	-9
+Honduras	42	53	30	-23

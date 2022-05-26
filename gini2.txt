@@ -1,0 +1,54 @@
+pais	region	gini	gini_trans	dif
+Argentina	al	0,457	0,449	-0,008
+Australia	oecd	0,454	0,325	-0,129
+Austria	oecd	0,486	0,274	-0,212
+Bélgica	oecd	0,489	0,262	-0,227
+Bolivia	al	0,457	0,449	-0,008
+Brasil	al	0,582	0,481	-0,101
+Canadá	oecd	0,421	0,301	-0,12
+Chile	al	0,488	0,475	-0,013
+Colombia	al	0,587	0,564	-0,023
+Costa Rica	al	0,576	0,497	-0,079
+Cuba	al	0,374		
+Chequia	oecd	0,432	0,248	-0,184
+Dinamarca	oecd	0,443	0,263	-0,18
+R. Dominicana	al	0,427	0,405	-0,022
+Ecuador	al	0,475	0,466	-0,009
+El Salvador	al	0,42		
+Estonia	oecd	0,465	0,305	-0,16
+Finlandia	oecd	0,509	0,269	-0,24
+Francia	oecd	0,519	0,292	-0,227
+Alemania	oecd	0,494	0,289	-0,205
+Grecia	oecd	0,525	0,308	-0,217
+Guatemala	al	0,483		
+Honduras	al	0,49		
+Hungría	oecd	0,463	0,286	-0,177
+Islandia	oecd	0,369	0,25	-0,119
+Irlanda	oecd	0,52	0,292	-0,228
+Israel	oecd	0,444	0,348	-0,096
+Italia	oecd	0,511	0,33	-0,181
+Japón	oecd	0,501	0,334	-0,167
+Letonia	oecd	0,47	0,344	-0,126
+Lituania	oecd	0,495	0,357	-0,138
+Luxemburgo	oecd	0,49	0,305	-0,185
+México	al	0,454	0,418	-0,036
+Países Bajos	oecd	0,444	0,296	-0,148
+Nueva Zelanda	oecd	0,46	0,33	-0,13
+Nicaragua	al	0,462		
+Noruega	oecd	0,427	0,261	-0,166
+Panamá	al	0,51		
+Paraguay	al	0,458	0,452	-0,006
+Perú	al	0,477	0,464	-0,013
+Polonia	oecd	0,452	0,281	-0,171
+Portugal	oecd	0,511	0,31	-0,201
+Eslovaquia	oecd	0,383	0,222	-0,161
+Eslovenia	oecd	0,444	0,246	-0,198
+Corea del Sur	oecd	0,402	0,345	-0,057
+España	oecd	0,491	0,32	-0,171
+Suecia	oecd	0,43	0,28	-0,15
+Suiza	oecd	0,395	0,311	-0,084
+Turquía	oecd	0,492	0,397	-0,095
+Reino Unido	oecd	0,508	0,366	-0,142
+Estados Unidos	oecd	0,505	0,395	-0,11
+Uruguay	al	0,383		
+Venezuela	al			

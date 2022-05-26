@@ -1,0 +1,20 @@
+país	y2004	y2010	y2020
+El Salvador	68	77	46
+Nicaragua	79	65	55
+Uruguay	84	32	58
+Rep. Dominicana	84	85	63
+México	83	78	70
+Guatemala	70	72	72
+Bolivia	81	65	74
+Brasil	69	51	74
+América Latina	75	68	77
+Colombia	62	67	81
+Panamá	77	64	81
+Honduras	70	80	81
+Venezuela	54	57	84
+Argentina	75	84	85
+Perú	87	83	89
+Ecuador	78	53	89
+Chile	74	64	91
+Costa Rica	72	67	91
+Paraguay	81	77	95

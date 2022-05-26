@@ -1,0 +1,20 @@
+pais	y1996	y2010	y2020
+Uruguay	80	75	74
+Venezuela	62	84	69
+Costa Rica	80	72	67
+Chile	54	63	60
+Argentina	71	66	55
+Bolivia	64	68	54
+R. Dominicana	65	63	50
+Media	60,8	61,4	48,6
+Nicaragua	59	58	48
+Perú	63	61	46
+El Salvador	56	59	46
+Paraguay	59	49	44
+Colombia	60	60	43
+México	53	49	43
+Brasil	50	54	40
+Guatemala	50	46	37
+Panamá	75	61	35
+Ecuador	52	64	33
+Honduras	42	53	30
