@@ -9,80 +9,74 @@ library(gt)
 
 #importar####
 
-sati <- read_delim("satisfaccion.txt", 
+sati <- read_delim("entrada/satisfaccion.txt", 
                    "\t", escape_double = FALSE, 
                    locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                    trim_ws = TRUE)
-t_sati <- read_delim("t_sati.txt", 
+t_sati <- read_delim("entrada/t_sati.txt", 
                      "\t", escape_double = FALSE, 
                      locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                      trim_ws = TRUE)
 
-la_sati <- read_delim("la_sati.txt", 
+la_sati <- read_delim("entrada/la_sati.txt", 
                       "\t", escape_double = FALSE, 
                       locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                       trim_ws = TRUE)
-pibgr_ini <- read_delim("pib.txt", 
+pibgr_ini <- read_delim("entrada/pib.txt", 
                    "\t", escape_double = FALSE, 
                    locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                    trim_ws = TRUE)
-idhdes <- read_delim("idh.txt", 
+idhdes <- read_delim("entrada/idh.txt", 
                    "\t", escape_double = FALSE, 
                    locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                    trim_ws = TRUE)
-civpol <- read_delim("civpol.txt", 
+civpol <- read_delim("entrada/civpol.txt", 
                      "\t", escape_double = FALSE, 
                      locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                      trim_ws = TRUE)
-freedomhouse <- read_delim("freedomhouse.txt", 
+freedomhouse <- read_delim("entrada/freedomhouse.txt", 
                            delim = "\t", escape_double = FALSE, 
                            na = "NA", trim_ws = TRUE)
-efectpp <-  read_delim("efectpp.txt", 
+efectpp <-  read_delim("entrada/efectpp.txt", 
                      "\t", escape_double = FALSE, 
                      locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                      trim_ws = TRUE)     
-efectpp_oecd <-  read_delim("efectpp_oecd.txt", 
+efectpp_oecd <-  read_delim("entrada/efectpp_oecd.txt", 
                        "\t", escape_double = FALSE, 
                        locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                        trim_ws = TRUE)  
-regul <-  read_delim("regul.txt", 
+regul <-  read_delim("entrada/regul.txt", 
                        "\t", escape_double = FALSE, 
                        locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                        trim_ws = TRUE) 
 
-intpocos <-  read_delim("int_pocos.txt", 
+intpocos <-  read_delim("entrada/int_pocos.txt", 
                          "\t", escape_double = FALSE, 
                          locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                          trim_ws = TRUE)
-prot_social <- read_delim("protec_social.txt", 
+prot_social <- read_delim("entrada/protec_social.txt", 
                           "\t", escape_double = FALSE, 
                           locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                           trim_ws = TRUE)
-pobreza <- read_delim("pobreza.txt", 
+pobreza <- read_delim("entrada/pobreza.txt", 
                       "\t", escape_double = FALSE, 
                       locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                       trim_ws = TRUE)
-
-p90 <- read_delim("noventa.txt", 
+p90 <- read_delim("entrada/noventa.txt", 
                   delim = "\t", escape_double = FALSE, 
                   na = "NA", trim_ws = TRUE)
-
-
-p99 <- read_delim("noventaynueve.txt", 
+p99 <- read_delim("entrada/noventaynueve.txt", 
                   delim = "\t", escape_double = FALSE, 
                   na = "NA", trim_ws = TRUE)
-
-gini <- read_delim("gini2.txt", 
+gini <- read_delim("entrada/gini2.txt", 
                    "\t", escape_double = FALSE, 
                    locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                    trim_ws = TRUE)
-
-recaud <- read_delim("recaud.txt", 
+recaud <- read_delim("entrada/recaud.txt", 
                   "\t", escape_double = FALSE, 
                   locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                   trim_ws = TRUE)
-
-recaud_reg <- read_delim("recaud_reg.txt", 
+recaud_reg <- read_delim("entrada/recaud_reg.txt", 
                          "\t", escape_double = FALSE, 
                          locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                          trim_ws = TRUE)
