@@ -1205,21 +1205,21 @@ g9_dml <- dml(ggobj = grafica9)
 
 read_pptx() %>%
   add_slide() %>%
-  ph_with(g1_dml, ph_location()) %>% 
+  ph_with(g1_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g2_dml, ph_location()) %>% 
+  ph_with(g2_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g3_dml, ph_location()) %>% 
+  ph_with(g3_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g4_dml, ph_location()) %>% 
+  ph_with(g4_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g5_dml, ph_location()) %>% 
+  ph_with(g5_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g6_dml, ph_location()) %>% 
+  ph_with(g6_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g7_dml, ph_location()) %>% 
+  ph_with(g7_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g8_dml, ph_location()) %>% 
+  ph_with(g8_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
-  ph_with(g9_dml, ph_location()) %>% 
+  ph_with(g9_dml, location = ph_location_fullsize()) %>% 
   base::print(target = "salida/demo_one.pptx")
