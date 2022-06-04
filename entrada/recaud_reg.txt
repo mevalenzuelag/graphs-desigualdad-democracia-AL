@@ -1,0 +1,4 @@
+tipo	América Latina	OECD sin AL
+ssocial	0,173	0,259
+rentaper	0,092	0,235
+iva	0,276	0,203

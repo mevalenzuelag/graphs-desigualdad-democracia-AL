@@ -1,0 +1,21 @@
+pais	valor	region
+Cuba	0,375	América Central
+OECD sin AL	0,351	Regiones
+Brasil	0,316	América del Sur
+Argentina	0,294	América del Sur
+Uruguay	0,266	América del Sur
+Nicaragua	0,254	América Central
+Costa Rica	0,229	América Central
+Bolivia	0,224	América del Sur
+El Salvador	0,219	América Central
+América Latina	0,210	Regiones
+Chile	0,193	América del Sur
+Honduras	0,192	América Central
+Ecuador	0,191	América del Sur
+Colombia	0,187	América del Sur
+México	0,179	América Central
+Perú	0,152	América del Sur
+Panamá	0,137	América Central
+Paraguay	0,134	América del Sur
+R. Dominicana	0,126	América Central
+Guatemala	0,124	América Central

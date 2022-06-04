@@ -360,7 +360,7 @@ pibgr %>%
 #IDH x desigualdad####
 
 idh_cuba <- filter(idhdes, n == 7)
-idh_latam <- filter(idhdes, n== 11)
+idh_latam <- filter(idhdes, n == 11)
 
 idhdes <- idhdes %>%
   mutate(esmedia = ifelse(pais == "Media de América Latina", "si", "no"))
@@ -1087,9 +1087,6 @@ pobreza %>%
 #Recaudación tributaria como % del PIB####
 
 recaud %>% 
-  mutate(valor = valor/100) -> recaud
-
-recaud %>% 
   mutate(destacado = ifelse(region == "Regiones", "si", "no")) -> recaud
 
 ggplot(recaud) +
@@ -1101,11 +1098,11 @@ ggplot(recaud) +
              shape = 19, show.legend = F) +
   geom_text(aes(label = paste0((valor*100), " %"), x = valor, 
                 y = reorder(pais, valor)),
-            hjust = - 0.5, 
+            hjust = -0.5, 
             family = "IBM Plex Sans Semibold", size = 3.5, show.legend = F) +
   scale_x_continuous(labels = percent,
                      limits = c(0,.5)) +
-  scale_alpha_manual(values = c("si" =.9, "no" = .5)) +
+  scale_alpha_manual(values = c("si" = .9, "no" = .5)) +
   scale_size_manual(values = c("si" = 5, "no" = 3)) +
   labs(x = "Impuestos como Proporción del PIB\n",
        y = "\nPaíses y regiones",
@@ -1125,13 +1122,10 @@ recaud_reg %>%
                names_to = "region",
                values_to = "valor") -> recaud_reg
 
-recaud_reg %>% 
-  mutate(valorporciento = valor/100) -> recaud_reg
-
 recaud_reg %>%
-  ggplot(mapping = aes(x = tipo, y = valorporciento, fill = region)) +
+  ggplot(mapping = aes(x = tipo, y = valor, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  geom_text(aes(x = tipo, y = valorporciento, label = paste0(valor, " %")),
+  geom_text(aes(x = tipo, y = valor, label = paste0(valor*100, " %")),
             family = "IBM Plex Sans Bold",
             size = 3.5, position = position_dodge2(.85), vjust = -1) +
   scale_y_continuous(breaks = seq(-.2,.55,.1),
@@ -1142,9 +1136,9 @@ recaud_reg %>%
        #subtitle = "Comparación de América Latina y el Caribe y demás países OECD\n",
        #caption = "Fuente: cálculos propios basados en (OECD et al., 2022 [3]),\n«revenue statistics in Latin america: comparative tables», OECD Tax Statistics (database)",
        fill = "Región", family = "IBM Plex Sans") +
-  scale_x_discrete(labels = c ("ssocial" = "Contribuciones a la\nSeguridad Social",
-                               "rentaper" = "Impuesto a la Renta\na las personas",
-                               "iva" = "Impuesto al Valor\nAgregado")) +
+  scale_x_discrete(labels = c("ssocial" = "Contribuciones a la\nSeguridad Social",
+                              "rentaper" = "Impuesto a la Renta\na las personas",
+                              "iva" = "Impuesto al Valor\nAgregado")) +
   scale_fill_manual(values = c("#86af49","#d57f70")) +
   theme_minimal(base_family = "IBM Plex Sans") +
   theme(plot.title = element_text(face = "bold"),
@@ -1152,12 +1146,11 @@ recaud_reg %>%
 
 #grilla
 
-
 grid <- plot_grid(p_comp, p_line, rel_widths = c(1, 0.85))
 
 
 title <- ggdraw() + 
-  draw_label("Recaudación de Impuestos en América Latina y la OECD", 
+  draw_label("Gráfica N° 7: Recaudación de impuestos en América Latina y la OECD", 
              fontface = "bold", 
              fontfamily = "IBM Plex Sans",
              x = 0, 
