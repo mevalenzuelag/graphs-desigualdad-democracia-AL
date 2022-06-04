@@ -5,18 +5,19 @@ n	pais	idh	idhdesig
 4	Uruguay	0,817	0,709
 5	Panamá	0,815	0,661
 6	Costa Rica	0,810	0,643
-7	México	0,779	0,628
-8	Perú	0,777	0,616
-9	Colombia	0,767	0,613
-10	América Latina	0,760	0,610
-11	Brasil	0,765	0,595
-12	Ecuador	0,759	0,595
-13	R. Dominicana	0,756	0,588
-14	Paraguay	0,728	0,570
-15	Bolivia	0,718	0,557
-16	Venezuela	0,711	0,546
-17	El Salvador	0,673	0,529
-18	Guatemala	0,663	0,505
-19	Nicaragua	0,660	0,481
-20	Honduras	0,634	0,472
-21	OCDE sin AL	0,912	0,834
+7	Cuba	0,783	-20
+8	México	0,779	0,628
+9	Perú	0,777	0,616
+10	Colombia	0,767	0,613
+11	América Latina	0,760	0,610
+12	Brasil	0,765	0,595
+13	Ecuador	0,759	0,595
+14	R. Dominicana	0,756	0,588
+15	Paraguay	0,728	0,570
+16	Bolivia	0,718	0,557
+17	Venezuela	0,711	0,546
+18	El Salvador	0,673	0,529
+19	Guatemala	0,663	0,505
+20	Nicaragua	0,660	0,481
+21	Honduras	0,634	0,472
+22	OCDE sin AL	0,912	0,834

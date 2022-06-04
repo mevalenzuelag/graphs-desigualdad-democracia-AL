@@ -6,6 +6,9 @@ library(reshape2)
 library(extrafont)
 library(cowplot)
 library(gt)
+library(rvg)
+library(officer)
+library(here)
 
 #importar####
 
@@ -92,20 +95,20 @@ sati %>%
                names_to = "yr",
                values_to = "valor") -> sati
 
-sati %>% 
-  ggplot() +
-  geom_line(aes(x = yr, y = valor, group = 1), 
-            colour = "gray", alpha = .5, size = 2) +
-  geom_point(aes(x = yr, y = valor, colour = yr), size = 4) +
-  facet_wrap(~pais, nrow = 1) +
-  ylim(0,100) +
-  theme_minimal(base_family = "IBM Plex Sans") + 
-  scale_color_viridis_d() +
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        strip.text.x = element_text(angle = 90),
-        panel.grid = element_blank(),
-        panel.background = element_rect(colour = "gray70"))
+#sati %>% 
+#  ggplot() +
+#  geom_line(aes(x = yr, y = valor, group = 1), 
+#            colour = "gray", alpha = .5, size = 2) +
+#  geom_point(aes(x = yr, y = valor, colour = yr), size = 4) +
+#  facet_wrap(~pais, nrow = 1) +
+#  ylim(0,100) +
+#  theme_minimal(base_family = "IBM Plex Sans") + 
+#  scale_color_viridis_d() +
+#  theme(axis.text.x = element_blank(),
+#        axis.ticks.x = element_blank(),
+#        strip.text.x = element_text(angle = 90),
+#        panel.grid = element_blank(),
+#        panel.background = element_rect(colour = "gray70"))
 
 #Evol Satisfaccion 
 la_sati %>%  
@@ -113,11 +116,12 @@ la_sati %>%
                               yr == 2010 | yr == 2015 | yr == 2020,
                               "si", "no")) -> la_sati
 
-p1 <- la_sati %>% 
+
+grafica1 <- la_sati %>% 
   ggplot() +
   geom_line(aes(x = yr, y = valor, group = 1)) +
   geom_point(aes(x = yr, y = valor, size = iniciofinal)) +
-  scale_size_manual(values = c("si" = 6, "no" = 0)) +
+  scale_size_manual(values = c("si" = 4, "no" = 0)) +
   geom_label_repel(aes(x = yr, y = valor,
                        label = ifelse(iniciofinal == "si", as.character(valor),"")),
                    size = 3.5, vjust = 0 , point.padding = 5, alpha = .67) +
@@ -132,6 +136,8 @@ p1 <- la_sati %>%
         plot.title = element_text(face = "bold")) +
   guides(size = "none")
 
+p1 <- grafica1
+
 p2 <- gt(t_sati) %>% 
   tab_options(table.font.size = 25) %>% 
   tab_style(style = list(cell_text(color = "red")), 
@@ -144,7 +150,7 @@ p2 <- gt(t_sati) %>%
             locations = cells_body(columns = y2020, 
                                    rows = y2020 <= 50)) %>%
   tab_style(style = list(cell_text(weight = "bold")),
-            locations = cells_body(rows = País == "Media de AL")) %>% 
+            locations = cells_body(rows = País == "América Latina")) %>% 
   cols_label(y1996 = "1996", 
              y2010 = "2010", 
              y2020 = "2020",
@@ -160,7 +166,7 @@ grid1 <- plot_grid(p1, p2_plot,
                    rel_widths = c(1, 0.6))
 
 title <- ggdraw() + 
-  draw_label("Satisfacción con la democracia en América Latina", 
+  draw_label("Gráfica 1: Satisfacción con la democracia en América Latina", 
              fontface = "bold", 
              fontfamily = "IBM Plex Sans",
              x = 0, 
@@ -200,23 +206,23 @@ int_pocos <- intpocos %>%
          id_al = ifelse(país == "América Latina", "si", "no"))
   
 int_pocos_04 <- int_pocos %>% 
-  filter(yr ==2004) %>% 
+  filter(yr == 2004) %>% 
   arrange(perc)
 
 int_pocos_10 <- int_pocos %>% 
-  filter(yr ==2010) %>% 
+  filter(yr == 2010) %>% 
   arrange(perc)
 
 int_pocos_20 <- int_pocos %>% 
-  filter(yr ==2020)
+  filter(yr == 2020)
 
 
 
-p_ip_20<- int_pocos_20 %>% 
+p_ip_20 <- int_pocos_20 %>% 
   ggplot(aes(x = reorder(país, -perc), 
              y = perc))  +
-  geom_bar(aes(fill=id_al), stat = "identity", position = "dodge", show.legend = F) +
-  geom_text(aes(label = perc), hjust = - 0.2, family = "IBM Plex Sans") +
+  geom_bar(aes(fill = id_al), stat = "identity", position = "dodge", show.legend = F) +
+  geom_text(aes(label = perc), hjust = -0.2, family = "IBM Plex Sans") +
   labs(x = "", 
        y = "Porcentaje", 
        title = "2020") + 
@@ -225,11 +231,13 @@ p_ip_20<- int_pocos_20 %>%
   theme(plot.title = element_text(face = "bold")) +
   coord_flip()
 
+grafica2 <- p_ip_20
+
 p_ip_10 <- int_pocos_10 %>% 
   ggplot(aes(x = reorder(país, -perc), 
              y = perc))  +
-  geom_bar(aes(fill=id_al), stat = "identity", position = "dodge", show.legend = F) +
-  geom_text(aes(label = perc), hjust = - 0.2, family = "IBM Plex Sans") +
+  geom_bar(aes(fill = id_al), stat = "identity", position = "dodge", show.legend = F) +
+  geom_text(aes(label = perc), hjust = -0.2, family = "IBM Plex Sans") +
   labs(x = "", 
        y = "Porcentaje", 
        title = "2010") + 
@@ -241,8 +249,8 @@ p_ip_10 <- int_pocos_10 %>%
 p_ip_04 <- int_pocos_04 %>% 
   ggplot(aes(x = reorder(país, -perc), 
              y = perc))  +
-  geom_bar(aes(fill=id_al), stat = "identity", position = "dodge", show.legend = F) +
-  geom_text(aes(label = perc), hjust = - 0.2, family = "IBM Plex Sans") +
+  geom_bar(aes(fill = id_al), stat = "identity", position = "dodge", show.legend = F) +
+  geom_text(aes(label = perc), hjust = -0.2, family = "IBM Plex Sans") +
   ylim(0, 100) + 
   labs(x = "", 
        y = "Porcentaje", 
@@ -363,7 +371,7 @@ idh_cuba <- filter(idhdes, n == 7)
 idh_latam <- filter(idhdes, n == 11)
 
 idhdes <- idhdes %>%
-  mutate(esmedia = ifelse(pais == "Media de América Latina", "si", "no"))
+  mutate(esmedia = ifelse(pais == "América Latina", "si", "no"))
 
 idhdes <- idhdes %>%
   mutate(nivelidh = ifelse(idhdesig > .8, "muy alto",
@@ -372,7 +380,7 @@ idhdes <- idhdes %>%
 idhdes[1,2] = "  "
 
 idhdes %>%
-  mutate(dif = idh-idhdesig) %>%
+  mutate(dif = idh - idhdesig) %>%
   pivot_longer(cols = c(idhdesig, idh)) -> idhdes
 
 idh <- idhdes %>%
@@ -380,15 +388,15 @@ idh <- idhdes %>%
 idhdesig <- idhdes %>% 
   filter(name == "idhdesig") 
 
-ggplot(idhdes)+
+ggplot(idhdes) +
   geom_segment(data = idh,
                aes(x = value, y = reorder(pais, -idhdesig$n),
                    yend = idhdesig$pais, xend = idhdesig$value),
                colour = "gray",
                size = 3.5,
-               alpha =.66) +
+               alpha = .66) +
   geom_point(aes(x = value, y = pais, colour = nivelidh, alpha = name),
-             size = 3.5, show.legend = F)+
+             size = 3.5, show.legend = F) +
   geom_vline(xintercept = .8, colour = "#34a853") +
   geom_vline(xintercept = .7, colour = "#fbbc04") +
   geom_vline(xintercept = .55,colour = "#ea4335") +
@@ -412,23 +420,23 @@ ggplot(idhdes)+
                                  "bajo" = "#ea4335")) +
   scale_alpha_manual(values = c("idhdesig" = 1,
                                 "idh" = 0)) +
-  labs(title = "\nÍndice de Desarrollo Humano en América Latina",
+  labs(title = "\nGgráfica N° 4: Índice de Desarrollo Humano en América Latina",
        subtitle = "Corregido por nivel de desigualdad\n",
        x = "\nÍndice de Desarrollo Humano",
        y = "",
        caption = "Fuente: PNUD 2020. Informe sobre Desarrollo Humano.
 No existen datos de desigualdad del desarrollo humano en Cuba.") +
   annotate("text", x = .5, y = 22, label = "Bajo", size = 6,
-           colour = "#ea4335", family="IBM Plex Sans Bold", alpha =.5) +
+           colour = "#ea4335", family = "IBM Plex Sans Bold", alpha = .5) +
   annotate("text", x = .625, y = 22, label = "Medio", size = 6,
-           colour = "#fbbc04", family="IBM Plex Sans Bold", alpha =.5) +
+           colour = "#fbbc04", family = "IBM Plex Sans Bold", alpha = .5) +
   annotate("text", x = .75, y = 22, label = "Alto", size = 6,
-           colour = "#34a853", family="IBM Plex Sans Bold", alpha =.5) +
+           colour = "#34a853", family = "IBM Plex Sans Bold", alpha = .5) +
   annotate("text", x = .85, y = 22, label = "Muy Alto", size = 6,
-           colour = "#4285f4", family="IBM Plex Sans Bold", alpha =.5) +
+           colour = "#4285f4", family = "IBM Plex Sans Bold", alpha = .5) +
   xlim(.45,.95) +
   theme_classic(base_family = "IBM Plex Sans") +
-  theme(plot.title = element_text(face = "bold"))
+  theme(plot.title = element_text(face = "bold")) -> grafica4
 
 
 #Derechos Civiles y Políticos####
@@ -450,13 +458,13 @@ lciv %>%
 
 lciv %>%
   right_join(dpol) %>% 
-  mutate(valor = (lciv+dpol)/2) -> civpol
+  mutate(valor = (lciv + dpol)/2) -> civpol
 
-range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+range01 <- function(x){(x - min(x))/(max(x) - min(x))}
 
 civpol <- civpol %>% 
   mutate(valor = range01(valor), 
-         valor = 1 -valor)
+         valor = 1 - valor)
 
 civpol %>% 
   mutate(iniciofinal = ifelse(yr == 1995 | yr == 2021, "si", "no")) -> civpol
@@ -492,7 +500,7 @@ p_comp <- civpol_region_comp %>%
   ggplot() +
   geom_line(aes(x = yr, y = valor, group = pais, colour = pais)) +
   geom_point(aes(x = yr, y = valor, size = iniciofinal, colour = pais)) +
-  scale_size_manual(values = c("si" = 6, "no" = -1)) +
+  scale_size_manual(values = c("si" = 4, "no" = -1)) +
   scale_colour_manual(values = c("América Latina" = "#86af49",
                                  "OECD sin América Latina" = "#d57f70")) +
   geom_label_repel(aes(x = yr, y = valor,
@@ -507,7 +515,7 @@ p_comp <- civpol_region_comp %>%
        y = "Promedio de puntajes",
        caption = "") +
   theme_minimal(base_family = "IBM Plex Sans") +
-  theme(axis.text = element_text(size =10, angle = 36),
+  theme(axis.text = element_text(size = 10, angle = 36),
         plot.title = element_text(face = "bold"),
         legend.position = "bottom", legend.title = element_blank()) +
   guides(size = "none", colour = guide_legend(nrow = 2))
@@ -571,7 +579,7 @@ p_q <- civpol_media_al %>%
   ggplot() +
   geom_line(aes(x = yr, y = valor, group = cuartiles, colour = cuartiles)) +
   geom_point(aes(x = yr, y = valor, size = iniciofinal, colour = cuartiles)) +
-  scale_size_manual(values = c("si" = 6, "no" = -1)) +
+  scale_size_manual(values = c("si" = 4, "no" = -1)) +
   geom_label_repel(aes(x = yr, y = valor, colour = cuartiles,
                        label = ifelse(iniciofinal == "si", as.character(valor),"")),
                    size = 4, point.padding = 5, alpha = .67, show.legend = F, 
@@ -600,7 +608,7 @@ grid2 <- plot_grid(p_comp, p_q)
 
 
 title <- ggdraw() + 
-  draw_label("Derechos Civiles y Políticos", 
+  draw_label("Gráfica N° 3: Derechos Civiles y Políticos", 
              fontface = "bold", 
              fontfamily = "IBM Plex Sans",
              x = 0, 
@@ -636,9 +644,7 @@ plot_grid(title, subtitle, grid1, caption1,
 
 plot_grid(title, subtitle, grid2, caption2,
           ncol = 1, 
-          rel_heights = c(0.05, 0.05, 1, 0.1))
-
-
+          rel_heights = c(0.05, 0.05, 1, 0.1)) -> grafica3
 
 #Efectividad Políticas Públicas####
 
@@ -691,7 +697,7 @@ p_comp <- efectppmean %>%
   theme(axis.text = element_text(size = 10, angle = 36),
         plot.title = element_text(face = "bold"), 
         legend.position = "bottom") +
-  guides(size = "none", color = guide_legend(title=" "))
+  guides(size = "none", color = guide_legend(title = " "))
 
 #para todos los países
 
@@ -782,7 +788,7 @@ p_q <- efectpp_media3 %>%
   ggplot() +
   geom_line(aes(x = yr, y = valor, group = cuartiles, colour = cuartiles)) +
   geom_point(aes(x = yr, y = valor, size = iniciofinal, colour = cuartiles)) +
-  scale_size_manual(values = c("si" = 6, "no" = -1)) +
+  scale_size_manual(values = c("si" = 4, "no" = -1)) +
   geom_label_repel(aes(x = yr, y = valor, colour = cuartiles,
                        label = ifelse(iniciofinal == "si", as.character(valor),"")),
                    size = 4, point.padding = 5, alpha = .67, show.legend = F) +
@@ -810,7 +816,7 @@ grid2 <- plot_grid(p_comp, p_q)
 
 
 title <- ggdraw() + 
-  draw_label("\nEfectividad de las Políticas Públicas", 
+  draw_label("\nGráfica N° 8: Efectividad de las políticas públicas", 
              fontface = "bold", 
              fontfamily = "IBM Plex Sans",
              x = 0, 
@@ -846,7 +852,7 @@ plot_grid(title, subtitle, grid1, caption1,
 
 plot_grid(title, subtitle, grid2, caption2,
           ncol = 1, 
-          rel_heights = c(0.05, 0.05, 1, 0.1))
+          rel_heights = c(0.05, 0.05, 1, 0.1)) -> grafica8
 
 #Gini antes y despues de impuestos y transferencias ####
 gini %>% 
@@ -880,7 +886,7 @@ ggplot(giniplot) +
              size = 2.5, shape = 25, show.legend = F) +
   geom_text(aes(label = gini, x = gini, 
                 y = reorder(pais, gini)),
-            colour = "#ea4335", vjust = - 2.5, 
+            colour = "#ea4335", vjust = -2.5, 
             family = "IBM Plex Sans Semibold", size = 3.5) +
   geom_text(aes(label = gini_trans, x = gini_trans, 
                 y = reorder(pais, gini)),
@@ -888,7 +894,7 @@ ggplot(giniplot) +
             family = "IBM Plex Sans Semibold", size = 3.5,
             show.legend = F) +
   coord_flip() +
-  labs(title = "\nReducción de desigualdad por impuestos y transferencias",
+  labs(title = "\nGráfica N° 9: Reducción de desigualdad por impuestos y transferencias",
        subtitle = "11 países de América Latina y media de OECD (sin AL). Década de 2010.",
        x = "Índice Gini\n",
        y = "",
@@ -897,7 +903,7 @@ CEPAL, 2021. Rodríguez-Guerrero, 2019.
 Banco Mundial, 2018. Hanni, Martner y Podestá, 2015") +
   theme_minimal(base_family = "IBM Plex Sans") +
   theme(plot.title = element_text(face = "bold"),
-        axis.text = element_text(size = 10, angle = 33))
+        axis.text = element_text(size = 10, angle = 33)) -> grafica9
 
 #Proporción de ingresos del 1% y el 10% más alto en América Latina 2000-2019 ####
 
@@ -913,12 +919,17 @@ p99 %>%
 ingresos_altos %>% 
   filter(pais == "América Latina" | pais == "Mundo") -> ia_corta
 
+latam <- c("Argentina", "Bolivia", "Brasil", "Costa Rica", "Colombia",
+           "Chile", "Ecuador", "R. Dominicana", "El Salvador", "México",
+           "Nicaragua", "Paraguay", "Perú", "Uruguay", "Venezuela")
+
 ingresos_altos %>% 
-  filter(!(pais == "América Latina" | pais == "Mundo")) -> ingresos_altos
+  filter(!(pais == "América Latina" | pais == "Mundo")) %>%
+  mutate(al = ifelse(pais %in% latam, 1, 0)) -> ingresos_altos
 
-writexl::write_xlsx(ingresos_altos, "ingresos_altos.xlsx") #carretoneo cochino
+#writexl::write_xlsx(ingresos_altos, "ingresos_altos.xlsx") #carretoneo cochino
 
-ingresos_altos <- readxl::read_xlsx("ingresos_altos.xlsx")
+#ingresos_altos <- readxl::read_xlsx("ingresos_altos.xlsx")
 
 ia_al <- ingresos_altos %>% 
   filter(al == 1)
@@ -940,13 +951,12 @@ ingresos_altos_trends <- ia_corta %>% bind_rows(ia_oecd) %>% group_by(yr) %>%
          lbl = paste0(round(valor*100), "%")) %>% 
   filter(pais != "Mundo")
 
-
 p_comp <- ingresos_altos_trends %>%
   ggplot() +
   geom_line(aes(x = yr, y = valor, group = paisind, colour = pais)) +
   geom_point(aes(x = yr, y = valor, size = iniciofinal, colour = pais, shape = indicador)) +
-  scale_size_manual(values = c("si" = 2.5, "no" = -1)) +
-  scale_colour_manual(values = c("América Latina" = "#dcb967",
+  scale_size_manual(values = c("si" = 2.5, "no" = 0)) +
+  scale_colour_manual(values = c("América Latina" = "#86af49",
                                  "OCDE sin AL" = "#d57f70")) +
   geom_label_repel(aes(x = yr, y = valor,
                        label = ifelse(iniciofinal == "si", as.character(lbl),""), color = pais),
@@ -959,7 +969,7 @@ p_comp <- ingresos_altos_trends %>%
        y = "",
        caption = "") +
   theme_minimal(base_family = "IBM Plex Sans") +
-  theme(axis.text = element_text(size =10, angle = 36),
+  theme(axis.text = element_text(size = 10, angle = 36),
         plot.title = element_text(face = "bold"),
         legend.position = "bottom", legend.title = element_blank()) +
   guides(size = "none", colour = guide_legend(nrow = 2))
@@ -969,7 +979,7 @@ ia_al_sel <- ia_al %>%
   filter(pais %in% c("Chile", "México", "Brasil", "Perú", "Costa Rica",
                      "Colombia", "El Salvador", "Uruguay", "Argentina", 
                      "Ecuador")) %>% 
-  pivot_longer(4:5, 
+  pivot_longer(3:4, 
                names_to = "indicador", 
                values_to = "valor") %>% 
   mutate(indicador = case_when(indicador == "p90" ~ "10% más rico", 
@@ -1004,9 +1014,8 @@ p_line <- ia_al_sel %>%
 
 grid <- plot_grid(p_comp, p_line, rel_widths = c(0.7, 1))
 
-
 title <- ggdraw() + 
-  draw_label("Proporción de ingresos del 1% y el 10% más alto en América Latina 2000-2019", 
+  draw_label("Gráfica N° 6: Proporción de ingresos del 1% y el 10% más alto en América Latina 2000-2019", 
              fontface = "bold", 
              fontfamily = "IBM Plex Sans",
              x = 0, 
@@ -1015,7 +1024,7 @@ title <- ggdraw() +
   theme(plot.margin = margin(3, 0, 0, 7)) 
 
 subtitle <- ggdraw() + 
-  draw_label("Comparado con datos del mundo y de la OCDE. Selección de 10 países",
+  draw_label("Comparado de América Latina y la OECD sin América Latina. Selección de 10 países",
              fontfamily = "IBM Plex Sans",
              x = 0, 
              hjust = 0, 
@@ -1031,7 +1040,7 @@ caption <- ggdraw() +
 
 plot_grid(title, subtitle, grid, caption,
           ncol = 1, 
-          rel_heights = c(0.05, 0.05, 1, 0.05))
+          rel_heights = c(0.05, 0.05, 1, 0.05)) -> grafica6
 
 
 #Porcentaje de la fuerza de trabajo excluida de la seguridad social contributiva ####
@@ -1040,24 +1049,22 @@ prot_social <- prot_social %>%
 
 
 prot_social %>% 
-  ggplot(aes(fill=población)) +
-  geom_bar(aes(x=reorder(factor(pais), -n), y=valor), stat="identity", position = "dodge") +
+  ggplot(aes(fill = población)) +
+  geom_bar(aes(x = reorder(factor(pais), -n), y = valor), stat = "identity", position = "dodge") +
   scale_y_continuous(breaks = seq(0,100,10),
                      limits = c(0,100)) +
-  geom_text(aes(x=factor(pais), y=valor, label=ifelse(valor != 0, as.character(lbl),""), colour=población), family = "IBM Plex Sans Semibold", position = position_dodge(width = .9),
-            size = 3.5, vjust=0.3, hjust = -0.1) +
-  labs(x="", 
+  geom_text(aes(x = factor(pais), y = valor, label = ifelse(valor != 0, as.character(lbl),""), colour = población), family = "IBM Plex Sans Semibold", position = position_dodge(width = .9),
+            size = 3.5, vjust = 0.3, hjust = -0.1) +
+  labs(x = "", 
        y = "Porcentaje", 
        subtitle = "En porcentajes. Selección de 10 países",
-       title = "Porcentaje de la fuerza de trabajo excluida de la seguridad social contributiva", 
+       title = "Gráfica N° 5: Porcentaje de la fuerza de trabajo excluida de la seguridad social contributiva", 
        caption = "Fuente: PNUD 2021. Informe Regional de Desarollo Humano") +
   theme_minimal(base_family = "IBM Plex Sans") +
   theme(plot.title = element_text(face = "bold"),
         legend.position = "bottom",
         legend.title = element_blank()) +
-          coord_flip()
-
-
+          coord_flip() -> grafica5
 
 #América Latina (18 países): tasas de pobreza y pobreza extrema y personas en situación de pobreza y pobreza extrema, 1990 - 2021 ####
 pobreza %>% 
@@ -1177,4 +1184,42 @@ cálculos propios basados en (OECD et al., 2022 [3]),
 
 plot_grid(title, subtitle, grid, caption,
           ncol = 1, 
-          rel_heights = c(0.05, 0.05, 1, 0.1))
+          rel_heights = c(0.05, 0.05, 1, 0.1)) -> grafica7
+
+
+#Exportar a PowerPoint####
+
+#pasar a DML
+
+g1_dml <- dml(ggobj = grafica1)
+g2_dml <- dml(ggobj = grafica2)
+g3_dml <- dml(ggobj = grafica3)
+g4_dml <- dml(ggobj = grafica4)
+g5_dml <- dml(ggobj = grafica5)
+g6_dml <- dml(ggobj = grafica6)
+g7_dml <- dml(ggobj = grafica7)
+g8_dml <- dml(ggobj = grafica8)
+g9_dml <- dml(ggobj = grafica9)
+
+#exportar a PPTX
+
+read_pptx() %>%
+  add_slide() %>%
+  ph_with(g1_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g2_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g3_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g4_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g5_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g6_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g7_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g8_dml, ph_location()) %>% 
+  add_slide() %>%
+  ph_with(g9_dml, ph_location()) %>% 
+  base::print(target = "salida/demo_one.pptx")
