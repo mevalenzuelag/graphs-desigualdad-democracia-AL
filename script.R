@@ -366,8 +366,8 @@ pibgr %>%
 
 #IDH x desigualdad####
 
-idh_cuba <- filter(idhdes, n == 7)
-idh_latam <- filter(idhdes, n == 10)
+idh_cuba <- filter(idhdes, pais %in% "Cuba")
+idh_latam <- filter(idhdes, pais %in% "América Latina")
 
 idhdes <- idhdes %>%
   mutate(esmedia = ifelse(pais == "América Latina", "si", "no"))
@@ -419,7 +419,7 @@ ggplot(idhdes) +
                                  "bajo" = "#ea4335")) +
   scale_alpha_manual(values = c("idhdesig" = 1,
                                 "idh" = 0)) +
-  labs(title = "\nGgráfica N° 4: Índice de Desarrollo Humano en América Latina",
+  labs(title = "\nGráfica N° 4: Índice de Desarrollo Humano en América Latina",
        subtitle = "Corregido por nivel de desigualdad\n",
        x = "\nÍndice de Desarrollo Humano",
        y = "",
@@ -1221,4 +1221,4 @@ read_pptx() %>%
   ph_with(g8_dml, location = ph_location_fullsize()) %>% 
   add_slide() %>%
   ph_with(g9_dml, location = ph_location_fullsize()) %>% 
-  base::print(target = "salida/demo_one.pptx")
+  base::print(target = "salida/graficas.pptx")
