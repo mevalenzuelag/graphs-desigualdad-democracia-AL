@@ -406,11 +406,11 @@ ggplot(idhdes) +
   geom_point(data = idh_cuba,
              aes(x = idh, y = pais), colour = "gray", shape = 15,
              alpha = 1, size = 3, show.legend = F) +
-  geom_text(data = idh, aes(label = value, x = value, 
+  geom_text(data = idh, aes(label = round(value, 3), x = value, 
                             y = reorder(pais, idhdesig$value)),
             colour = "gray", hjust = -.5, 
             family = "IBM Plex Sans Semibold", size = 3) +
-  geom_text(data = idhdesig, aes(label = value, x = value, 
+  geom_text(data = idhdesig, aes(label = round(value, 3), x = value, 
                                  y = reorder(pais, idhdesig$value), colour = nivelidh),
             hjust = 1.5, family = "IBM Plex Sans Semibold", size = 3.5,
             show.legend = F) +
@@ -997,7 +997,7 @@ p_line <- ia_al_sel %>%
   geom_label_repel(aes(x = yr, y = valor,
                        label = ifelse(iniciofinal == "si", as.character(lbl),"")),
                    size = 2.5, point.padding = 3, alpha = .67, min.segment.length = 1, 
-                   family = "IBM Plex Sans") +
+                   family = "IBM Plex Sans", max.overlaps = 10000) +
   facet_wrap(~reorder(pais, -valor), nrow = 2, ncol = 5) +
   scale_y_continuous(labels = percent, limits = c(0,1), breaks = seq(0, 1, 0.2)) +
   labs(title = "",
