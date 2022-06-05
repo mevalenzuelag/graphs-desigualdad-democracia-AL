@@ -6,10 +6,10 @@ n	pais	idh	idhdesig
 6	Panamá	0,815	0,643
 5	Costa Rica	0,81	0,661
 7	Cuba	0,783	-20
-11	México	0,779	0,613
+10	México	0,779	0,613
 8	Perú	0,777	0,628
 12	Colombia	0,767	0,595
-10	América Latina	0,766	0,596
+11	América Latina	0,766	0,596
 15	Brasil	0,765	0,57
 9	Ecuador	0,759	0,616
 13	R. Dominicana	0,756	0,595

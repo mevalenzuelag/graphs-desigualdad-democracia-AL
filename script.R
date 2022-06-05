@@ -8,7 +8,6 @@ library(cowplot)
 library(gt)
 library(rvg)
 library(officer)
-library(here)
 
 #importar####
 
@@ -29,7 +28,7 @@ pibgr_ini <- read_delim("entrada/pib.txt",
                    "\t", escape_double = FALSE, 
                    locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                    trim_ws = TRUE)
-idhdes <- read_delim("entrada/idh.txt", 
+idhdes <- read_delim("entrada/idh2.txt", 
                    "\t", escape_double = FALSE, 
                    locale = locale(date_names = "es", decimal_mark = ",", grouping_mark = "."), 
                    trim_ws = TRUE)
@@ -368,7 +367,7 @@ pibgr %>%
 #IDH x desigualdad####
 
 idh_cuba <- filter(idhdes, n == 7)
-idh_latam <- filter(idhdes, n == 11)
+idh_latam <- filter(idhdes, n == 10)
 
 idhdes <- idhdes %>%
   mutate(esmedia = ifelse(pais == "América Latina", "si", "no"))
